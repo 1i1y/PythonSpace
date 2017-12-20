@@ -1,0 +1,5 @@
+#coding:MS950
+from sys import argv
+name=input('¦WºÙ:')
+print('Hello',name,'!',argv[1])
+

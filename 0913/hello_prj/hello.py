@@ -1,0 +1,4 @@
+#coding:MS950
+name=input('[®M¥óª©]¦WºÙ:')
+print('Hello',name,'!')
+

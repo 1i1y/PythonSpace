@@ -1,0 +1,6 @@
+1.官方網站
+https://docs.python.org/3/
+2.繁體中文翻譯
+https://docs.python.org.tw/3/
+3.簡體中文翻譯
+http://python.usyiyi.cn/

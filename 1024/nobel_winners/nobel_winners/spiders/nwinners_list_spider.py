@@ -1,0 +1,23 @@
+﻿import scrapy  #scrapy 大隻的爬蟲，xpath的規則很亂
+import re      #re 有關正規化的東西
+
+class NWinnerItem(scrapy.Item):
+    country = scrapy.Field()
+    name    = scrapy.Field()
+    link_text = scrapy.Field()
+
+class NWinnerSpider(scrapy.Spider):
+    name = 'nwinners_list'
+    allowed_domains = ['en.wikipedia.org']
+    
+    start_urls = ['https://en.wikipedia.org/wiki/List_of_Nobel_laureates_by_country']
+    
+    def parse(self,response):
+        h2s = response.xpath('//h2')
+        for h2 in h2s:
+            country = h2.xpath('span[@class="mw-headline"]/text()').extract()  #.extract 擷取
+            if country:
+                winners = h2.xpath('following-sibling::ol[1]')
+                for w in winners.xpath('li'):
+                    text = w.xpath('descendant-or-self::text()').extract()
+                    yield NWinnerItem(country=country[0],name=text[0],link_text=''.join(text))
